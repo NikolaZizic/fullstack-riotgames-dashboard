@@ -150,4 +150,6 @@ def getPuuidForPlayer(userID : str, tagline : str):
 
 ## Get the puuid for a player
 
-## Get 
+## Get matches per puuid
+
+## EXtract all the data from the match
