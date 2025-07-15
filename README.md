@@ -1,4 +1,6 @@
-# fullstack-riotgames-dashboard
+# Teamfight-Tactics stats
+
+![Python 3.13.5](https://img.shields.io/badge/python-3.7.4-blue.svg)
 
 "This is a full-stack project designed to display user statistics for matches played in Teamfight Tactics (TFT).<br />
 <br />
@@ -6,13 +8,18 @@ Data is extracted using a Python script that interacts with the official Riot Ga
 The data pipeline is fully automated, with an option for manual refresh if needed.
 The graphical user interface (GUI) is built using the Streamlit package."
 
-Database: `SQL Server` + `SSMS` <br />
-Language: `Python`, `SQL` <br />
-Data: _Provided using the Riot API_
-
 ## API key
 You also need to have an API key from Riot. You can get it by creating an account here: <https://developer.riotgames.com/>.
 To use the Riot api you must also agree to their terms of use found at https://developer.riotgames.com/terms
+
+## Design
+
+**Backend**: `Python` wrapper for the Riot API <br />
+**Frontend**: Using the Streamlit package for `Python` <br />
+**Data**: _Provided using the Riot API_
+
+### Future (optional) features
+**Backend**: Data ingestion with an SQL Server connector in python
 
 ## Disclaimer
 This is an unofficial, community-built Python wrapper around the Riot Games API. This project is **not endorsed, sponsored, certified, or otherwise affiliated** with Riot Games, Inc.
