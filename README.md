@@ -1,6 +1,6 @@
 # Teamfight-Tactics stats
 
-![Python 3.13.5](https://img.shields.io/badge/python-3.7.4-blue.svg)
+![Python 3.13.5](https://img.shields.io/badge/python-3.13.5-blue.svg)
 
 "This is a full-stack project designed to display user statistics for matches played in Teamfight Tactics (TFT).<br />
 <br />
