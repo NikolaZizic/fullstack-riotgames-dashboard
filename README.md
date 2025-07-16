@@ -6,7 +6,9 @@
 <br />
 Data is extracted using a Python script that interacts with the official Riot Games API, and is then ingested into a SQL Server database.
 The data pipeline is fully automated, with an option for manual refresh if needed.
-The graphical user interface (GUI) is built using the Streamlit package."
+The graphical user interface (GUI) is built using the Streamlit package." <br />
+
+The scripts in the **backend folder** can be used separately from the **frontend folder** il you just want a python wrapper for the Riot API. The frontend comes as a bonus for visualization. 
 
 ## API key
 You also need to have an API key from Riot. You can get it by creating an account here: <https://developer.riotgames.com/>.
