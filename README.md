@@ -12,6 +12,11 @@ The graphical user interface (GUI) is built using the Streamlit package."
 You also need to have an API key from Riot. You can get it by creating an account here: <https://developer.riotgames.com/>.
 To use the Riot api you must also agree to their terms of use found at https://developer.riotgames.com/terms
 
+## Requests
+Currently supported requests :
+- <ins>Player PUUID</ins> by username and tagline -> get_player_puuid(username : str, tagline :str)
+
+Further requests to be added soon.
 ## Design
 
 **Backend**: `Python` wrapper for the Riot API <br />
