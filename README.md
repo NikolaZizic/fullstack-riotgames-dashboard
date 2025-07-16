@@ -16,7 +16,7 @@ To use the Riot api you must also agree to their terms of use found at https://d
 
 ## Requests
 Currently supported requests :
-- <ins>Player PUUID</ins> by username and tagline -> get_player_puuid(username : str, tagline :str)
+- <ins>Player PUUID</ins> by username and tagline : `get_player_puuid(username : str, tagline :str) -> str`
 
 Further requests to be added soon.
 ## Design
