@@ -16,6 +16,8 @@ logger = logging.getLogger(__name__)
 
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+# The 'creds' file contains the headers with the API key
 from creds import headers
 
 
@@ -131,7 +133,7 @@ class RiotAPIClient:
         
 
 
-    def _save_data(self, filename : str, data : Any) -> None: # change Any
+    def _save_data(self, filename : str, data : dict[str, Any]) -> None: 
         """
         Save data to JSON file
         
@@ -149,7 +151,7 @@ class RiotAPIClient:
             raise RiotAPIError(f"Failed to save data: {e}")
 
 
-    def get_player_puuid(self, username : str, tagline :str) -> Any : # change Any later
+    def get_player_puuid(self, username : str, tagline :str) -> str : 
         """
         Get player PUUID by username and tagline
         
@@ -189,11 +191,6 @@ def main():
         puuid = client.get_player_puuid("somePlayerName", "NA")
         print(f"Player PUUID: {puuid}")
         
-        # Get player matches
-       
-        
-        # Get league entries
-       
         
     except RiotAPIError as e:
         logger.error(f"API error: {e}")
