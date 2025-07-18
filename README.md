@@ -17,6 +17,8 @@ To use the Riot api you must also agree to their terms of use found at https://d
 ## Requests
 Currently supported requests :
 - <ins>Player PUUID</ins> by username and tagline : `get_player_puuid(username : str, tagline :str) -> str`
+- <ins>Player matches</ins> by username/tagline or PUUID : `get_player_matches(username: str, tagline: str, match_count: int, puuid: str) -> list`
+- <ins>Latest match info</ins> by username/tagline or PUUID : `get_latest_match_info(puuid: str, username: str, tagline: str) -> dict[str, Any]`
 
 Further requests to be added soon.
 ## Design

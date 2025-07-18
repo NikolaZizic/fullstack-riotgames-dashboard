@@ -174,6 +174,77 @@ class RiotAPIClient:
         return response.data.get('puuid')
     
 
+    def get_player_matches(self, username: str = None, tagline: str = None, match_count: int = 5, puuid: str = None) -> list:
+        """
+        Get player matches by username/tagline or PUUID
+        
+        Args:
+            username: Player's username
+            tagline: Player's tagline/region 
+            match_count: Number of matches to return/ Returns 5 by default if not specified
+            puuid: Player's PUUID (optional, will fetch if not provided)
+            
+        Returns:
+            List of match IDs
+        """
+        # Get PUUID if not provided
+        if puuid is None:
+
+            if tagline is None or username is None:
+                raise ValueError("Tagline/region and username must be provided without PUUID")
+            
+            puuid = self.get_player_puuid(username, tagline)
+            
+            if not puuid:
+                raise RiotAPIError(f"Failed to get PUUID for {username}#{tagline}")
+        
+
+        # Using the PUUID to get matches
+        url = f"{self.BASE_URLS['europe']}/tft/match/v1/matches/by-puuid/{puuid}/ids?start=0&count={match_count}"
+        response = self._make_request(url)
+        
+
+        if not response.success:
+            raise RiotAPIError(f"Failed to get matches for player")
+        
+        filename = f"{username}_matches" if username else f"{puuid}_matches"
+        self._save_data(filename, response.data)
+        
+        return response.data
+    
+
+    def get_latest_match_info(self, puuid: str = None, username: str = None, tagline: str = None) -> dict[str, Any] :
+        """
+        Get the latest match info by username/tagline or PUUID
+        
+        Args:
+            puuid: Player's PUUID (optional, will fetch if not provided)
+            username: Player's username
+            tagline: Player's tagline/region 
+            
+        Returns:
+            The latest match info
+        """
+        if puuid is None :
+            if tagline is None or username is None:
+                raise ValueError("Tagline/region and username must be provided without the match ID")
+            
+            match_id = self.get_player_matches(username = username, tagline = tagline, match_count = 1)[0]
+
+        else : match_id = self.get_player_matches(puuid= puuid, match_count = 1)[0]
+
+        url = f"{self.BASE_URLS['europe']}/tft/match/v1/matches/{match_id}"
+        response = self._make_request(url)
+
+        if not response.success:
+            raise RiotAPIError(f"Failed to get the latest match info.")
+        
+        filename = f"matchID_{match_id}_info"
+        self._save_data(filename, response.data)
+        
+        return response.data
+        
+
     def close(self) -> None:
         """Close the session"""
         self.session.close()
@@ -187,10 +258,19 @@ def main():
     client = RiotAPIClient(headers)
     
     try:
-        # Get player PUUID
+        #Get player PUUID
         puuid = client.get_player_puuid("somePlayerName", "NA")
         print(f"Player PUUID: {puuid}")
         
+
+        # Get player matches
+        # matches = client.get_player_matches("somePlayerName", "NA")
+        # for match in matches:
+        #     print(match)
+
+        #Get latest player match info
+        #latest_match = client.get_latest_match_info("somePlayerName", "NA")
+        #print(latest_match)
         
     except RiotAPIError as e:
         logger.error(f"API error: {e}")
@@ -200,5 +280,5 @@ def main():
 
 
 # if __name__ == "__main__":
-#     main()
+main()
 
